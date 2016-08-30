@@ -1275,4 +1275,4 @@ pprint(list(record.aggregate([{"$match": {'address.postcode': {"$exists": 1}}},
 
 # Conclusion and other ideas about the dataset
 
-> When we audit the data, it is quite clear that although there are minor errors caused by human input, the dataset is fairly well-cleaned. Considering there are lots of contributors for this map, there are a great number of human errors in this project. I'd recommend a srtuctured input form so everyone can input the same data format to reduce this error or we can create a more robust script to clean the data on a regular basis. 
+> When we audit the data, it is quite clear that although there are minor errors caused by human input, the dataset is fairly well-cleaned. Considering there are lots of contributors for this map, there are a great number of human errors in this project. I'd recommend a structured input form so everyone can input the same data format to reduce this error or we can create a more robust script to clean the data on a regular basis. 

@@ -202,7 +202,7 @@ for event, element in ET.iterparse(mumbai_file):
         elif(re.match(lower_colon,d)):
             keys['lower_colon']+=1
             flag = 1
-        
+
         if flag==0:
             for c in d:
                 if(re.match(problemchars, c)):
@@ -210,10 +210,10 @@ for event, element in ET.iterparse(mumbai_file):
                     flag = 2
                     print d
                     break
-                    
+
         if flag ==0:
             keys['other'] +=1
-        
+
 
 pprint(keys)</code></pre>
 <pre><code>Cable TV Provider
@@ -230,7 +230,7 @@ street parking
 street parking
 street parking
 Community Centre
-Area details 
+Area details
 street parking
 street parking
 Golden Park
@@ -586,7 +586,7 @@ for event, element in ET.iterparse(mumbai_file):
                     list_of_amenities.add(child.attrib['v'])
             except:
                 pass
-           
+
 
 pprint(list_of_amenities)</code></pre>
 <pre><code>set(['Canteen',
@@ -753,10 +753,10 @@ for event, element in ET.iterparse(mumbai_file):
                         if sub_field not in languages:
                             languages_mapping[sub_field] = sub_field
                             languages.append(sub_field)
-        
+
             except:
                 pass
-    
+
 pprint(sorted(languages))</code></pre>
 <pre><code>['',
  'bn',
@@ -825,7 +825,7 @@ for event, element in ET.iterparse(mumbai_file):
                     postal_code.add(child.attrib['v'])
                 if child.attrib['k'] == &quot;addr:postcode&quot;:
                     postcode.add(child.attrib['v'])
-                    
+
             except:
                 pass
 
@@ -965,32 +965,32 @@ set([' 410201',
 <div id="desired-structure-of-the-dictionary" class="section level3">
 <h3><em>Desired structure of the dictionary:</em></h3>
 <p><br /> <br /></p>
-<pre class="python"><code>  { 
-      id : , 
-      type : , 
-      visible : , 
-      created : { 
-                 version : , 
-                 changeset : , 
-                 timestamp : , 
-                 user : , 
-                 uid : 
-               }, 
-      pos : [latitude, longitude], 
-      address : { 
-                 housenumber: , 
-                 postcode : , 
-                 street : 
-                }, 
-      amenity : , 
-      cuisine : , 
-      name : , 
-      phone : , 
-      . 
-      . 
-      _other fields_ 
-      . 
-      . 
+<pre class="python"><code>  {
+      id : ,
+      type : ,
+      visible : ,
+      created : {
+                 version : ,
+                 changeset : ,
+                 timestamp : ,
+                 user : ,
+                 uid :
+               },
+      pos : [latitude, longitude],
+      address : {
+                 housenumber: ,
+                 postcode : ,
+                 street :
+                },
+      amenity : ,
+      cuisine : ,
+      name : ,
+      phone : ,
+      .
+      .
+      _other fields_
+      .
+      .
     }
     </code></pre>
 <blockquote>
@@ -999,86 +999,86 @@ set([' 410201',
 <pre class="python"><code>
 
 def shape_data(elements , current_dict):
-    
+
                                        #Head tags, decide the type of entry
-    if elements.tag in [&quot;node&quot;,&quot;way&quot;]:                             
+    if elements.tag in [&quot;node&quot;,&quot;way&quot;]:
         current_dict['type'] = elements.tag
-        
-        
-                                      
+
+
+
                                       # created field extracted from attributes of head tag
-        current_dict['created'] = {}                               
-        if 'lat' in elements.attrib and 'lon' in elements.attrib: 
+        current_dict['created'] = {}
+        if 'lat' in elements.attrib and 'lon' in elements.attrib:
             current_dict['pos']  =  [float(elements.attrib['lat']), float(elements.attrib['lon'])]
-            
-                                       
+
+
                                        # Other attributes contained in the head tag are added to the dictionary
         for attribute in elements.attrib:
             if attribute not in [&quot;lat&quot;, &quot;lon&quot;, &quot;user&quot;, &quot;uid&quot;, &quot;timestamp&quot;, &quot;changeset&quot;, &quot;version&quot;]:
                 current_dict[attribute] = elements.attrib[attribute]
             elif attribute in [&quot;user&quot;, &quot;uid&quot;, &quot;timestamp&quot;, &quot;changeset&quot;, &quot;version&quot;]:
                 current_dict['created'][attribute] = elements.attrib[attribute]
-    
-                              
+
+
     #'nd' tag of the way type of head tags are found and its ref attribute is added to the dictionary in a list
     if elements.tag == &quot;nd&quot;:
         if 'nd_ref' not in current_dict:
             current_dict['nd_ref'] = []
-        if 'ref' in elements.attrib:    
+        if 'ref' in elements.attrib:
             current_dict['nd_ref'].append(elements.attrib['ref'])
-    
-    
+
+
     # Child tags containing head tag as 'tag' are scanned one by one
     for element in elements:
-                                                    
+
         if element.tag == &quot;tag&quot;:
-                                                    
-            # Amentities are converted to a list as some contain multiple 
+
+            # Amentities are converted to a list as some contain multiple
             if element.attrib['k'] in [&quot;Amenity&quot;,&quot;amenity&quot;]:
                 if ';' in element.attrib['v']:
                     values = element.attrib['v'].split(';')
                     current_dict['amenity'] = values
                 else:
-                    current_dict['amenity'] = [element.attrib['v']]  
-                                
-            
-            #  Postal code is a duplicate field, it is inserted into the address field                                         
+                    current_dict['amenity'] = [element.attrib['v']]
+
+
+            #  Postal code is a duplicate field, it is inserted into the address field
             elif element.attrib['k'] == &quot;postal_code&quot;:
                     if 'address' not in current_dict:
                         current_dict[address] = {}
                         current_dict['address']['postcode'] = int(element.attrib['v'])
 
-            # another duplicate field for addr:postcode                                      
+            # another duplicate field for addr:postcode
             elif element.attrib['k'] == &quot;postcode&quot;:
                 if 'address' not in current_dict:
                         current_dict[address] = {}
                 current_dict['address']['postcode'] = int(element.attrib['v'])
 
-            # Fields containing sub fields are scanned                                      
+            # Fields containing sub fields are scanned
             elif ':' in element.attrib['k']:
-                
+
                  # split the name by ':' to get the parent field and its sub field
-                splitted_fields = element.attrib['k'].split(':')  
+                splitted_fields = element.attrib['k'].split(':')
                 parent = splitted_fields[0]
 
                 # If parent field isn't present inintialise
                 # it as an empty dictionary
                 # Abbreviated names are changed to their full
                 # names from keys_with_sub_types variable
-                if keys_with_sub_types[parent] not in current_dict:  
+                if keys_with_sub_types[parent] not in current_dict:
                     current_dict[keys_with_sub_types[parent]] = {}
-                elif type(current_dict[keys_with_sub_types[parent]]) != type({}):      
-                    value = current_dict[keys_with_sub_types[parent]]                  
-                    current_dict[keys_with_sub_types[parent]] = {}                     
-                    current_dict[keys_with_sub_types[parent]][parent] = value          
-                
+                elif type(current_dict[keys_with_sub_types[parent]]) != type({}):
+                    value = current_dict[keys_with_sub_types[parent]]
+                    current_dict[keys_with_sub_types[parent]] = {}
+                    current_dict[keys_with_sub_types[parent]][parent] = value
+
                 if parent == &quot;addr&quot; and element.attrib('k').split(':')[1] == &quot;postcode&quot;:
-                    
+
                     current_dict[keys_with_sub_types[parent]]['postcode'] = element.attrib('v').strip(' ').split(',')[0]
-                    
-                
+
+
                 # If the parent field is name, get its
-                # sub field and insert with suitable full name of 
+                # sub field and insert with suitable full name of
                 # the language from language_mapping variable
                 elif parent == &quot;name&quot;:
                     sub_name = splitted_fields[1]
@@ -1087,9 +1087,9 @@ def shape_data(elements , current_dict):
                 elif len(splitted_fields) &gt; 2:
                     temp_dict  = {}
                     temp_dict1 = {}
-                    temp_dict1[splitted_fields[-1]] = element.attrib['v']             
-                                                                                       
-                    for i in range(2,len(splitted_fields)):                            
+                    temp_dict1[splitted_fields[-1]] = element.attrib['v']
+
+                    for i in range(2,len(splitted_fields)):
                         temp_dict[splitted_fields[-1*i]] = temp_dict1
                         temp_dict1 = temp_dict
 
@@ -1097,41 +1097,41 @@ def shape_data(elements , current_dict):
 
                 else:
                     current_dict[keys_with_sub_types[parent]][splitted_fields[1]] = element.attrib['v']
-            
+
             # for any other parent field insert with suitable
             # corrections from keys_with_sub_types
             else:
                 attribute = element.attrib['k']
                 attribute = attribute.lower()
                 try:
-                    if type(current_dict[attribute]) == type({}):                       
-                        current_dict[attribute][attribute] = element.attrib['v']        
+                    if type(current_dict[attribute]) == type({}):
+                        current_dict[attribute][attribute] = element.attrib['v']
                     else:
                         current_dict[attribute] = element.attrib['v']
                 except:
                     current_dict[attribute] = element.attrib['v']
 
-                
+
     return current_dict
 
 
 
 def create_dictionary(mumbai_file):
-    
+
     json_list = []
     current_dict = {}
-    
+
     for event, element in ET.iterparse(mumbai_file):
-        
+
         # as soon as new node/way is detected append the current dictionary
         # and clear it fit the contents of the new node/way.
         if element.tag in [&quot;node&quot;, &quot;way&quot;]:
-            json_list.append(current_dict)                  
-            current_dict = {}                               
+            json_list.append(current_dict)
+            current_dict = {}
             current_dict = shape_data(element, current_dict)
         elif element.tag not in [&quot;relation&quot;, &quot;bounds&quot;]:
             current_dict = shape_data(element, current_dict)
-            
+
     return json_list
 
 final_dictionary = create_dictionary(mumbai_file)
@@ -1315,7 +1315,7 @@ pprint(list(user_contributions))</code></pre>
 <div id="conclusion-and-other-ideas-about-the-dataset" class="section level1">
 <h1>Conclusion and other ideas about the dataset</h1>
 <blockquote>
-<p>When we audit the data, it is quite clear that although there are minor errors caused by human input, the dataset is fairly well-cleaned. Considering there are lots of contributors for this map, there are a great number of human errors in this project. I’d recommend a srtuctured input form so everyone can input the same data format to reduce this error or we can create a more robust script to clean the data on a regular basis.</p>
+<p>When we audit the data, it is quite clear that although there are minor errors caused by human input, the dataset is fairly well-cleaned. Considering there are lots of contributors for this map, there are a great number of human errors in this project. I’d recommend a structured input form so everyone can input the same data format to reduce this error or we can create a more robust script to clean the data on a regular basis.</p>
 </blockquote>
 </div>
 
