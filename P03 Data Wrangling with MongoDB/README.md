@@ -1,6 +1,3 @@
----
-output: pdf_document
----
 # Data Wrangling with MongoDB
 
 <br/>
