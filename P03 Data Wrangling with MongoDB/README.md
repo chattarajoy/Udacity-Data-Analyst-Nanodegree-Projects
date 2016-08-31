@@ -802,3 +802,7 @@ pprint(list(record.aggregate([{"$match": {'address.postcode': {"$exists": 1}}},
 # Conclusion and other ideas about the dataset
 
 > When we audit the data, it is quite clear that although there are minor errors caused by human input, the dataset is fairly well-cleaned. Considering there are lots of contributors for this map, there are a great number of human errors in this project. I'd recommend a structured input form so everyone can input the same data format to reduce this error or we can create a more robust script to clean the data on a regular basis. 
+<br/>
+> The structured input will make the cleaning of data much easier. We can even specify data types and constraints on certain fields thus making comparison easier and maintaining the integrity of the data.
+<br/>
+> The above said solution is a bit difficult to implement. It would require a person to dedicate all of this time in writing scripts and designig the input struture, also users may find it difficult to submit data programatically because of such constraints. It might be a good idea to reward user's with more contributions in such senarios

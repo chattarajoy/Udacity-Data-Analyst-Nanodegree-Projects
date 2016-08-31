@@ -202,7 +202,7 @@ for event, element in ET.iterparse(mumbai_file):
         elif(re.match(lower_colon,d)):
             keys['lower_colon']+=1
             flag = 1
-
+        
         if flag==0:
             for c in d:
                 if(re.match(problemchars, c)):
@@ -210,10 +210,10 @@ for event, element in ET.iterparse(mumbai_file):
                     flag = 2
                     print d
                     break
-
+                    
         if flag ==0:
             keys['other'] +=1
-
+        
 
 pprint(keys)</code></pre>
 <pre><code>Cable TV Provider
@@ -230,7 +230,7 @@ street parking
 street parking
 street parking
 Community Centre
-Area details
+Area details 
 street parking
 street parking
 Golden Park
@@ -265,309 +265,9 @@ pprint(list_of_keys)
      'Amenity',
      'Area details ',
      'Cable TV Provider',
-     'City',
-     'Community Centre',
-     'Consulate',
-     'EState Consultants',
-     'FIXME',
-     'Family',
-     'Golden Park',
-     'Gym',
-     'Mangeshi Dham',
-     'Name',
-     'Sahakari Bhandar',
-     'School',
-     'University',
-     'abutters',
-     'access',
-     'addr:city',
-     'addr:country',
-     'addr:full',
-     'addr:housename',
-     'addr:housenumber',
-     'addr:postcode',
-     'addr:state',
-     'addr:street',
-     'addr:unit',
-     'admin_level',
-     'aerodrome',
-     'aeroway',
-     'alt_name',
-     'alternative_name',
-     'amenity',
-     'ara',
-     'area',
-     'atm',
-     'attraction',
-     'barrier',
-     'bench',
-     'bicycle',
-     'boat',
-     'boundary',
-     'brand',
-     'bridge',
-     'bridge_name',
-     'bu',
-     'building',
-     'building:levels',
-     'bus',
-     'business Park',
-     'cables',
-     'capacity',
-     'charge',
-     'cmt',
-     'collection_times',
-     'construction',
-     'content',
-     'count',
-     'covered',
-     'created_by',
-     'crossing',
-     'cuisine',
-     'cutting',
-     'cycleway',
-     'date',
-     'denomination',
-     'description',
-     'design',
-     'designation',
-     'direction',
-     'dispensing',
-     'disused',
-     'drive_in',
-     'drive_through',
-     'earthquake_damage',
-     'ele',
-     'electrified',
-     'email',
-     'embankment',
-     'emergency',
-     'faculty',
-     'family',
-     'fax',
-     'fee',
-     'fixme',
-     'foot',
-     'footway',
-     'ford',
-     'frequency',
-     'fuel',
-     'fuel:HGV_diesel',
-     'fuel:biodiesel',
-     'fuel:biogas',
-     'fuel:cng',
-     'fuel:diesel',
-     'fuel:electricity',
-     'fuel:lpg',
-     'fuel:octane_91',
-     'fuel:octane_95',
-     'fuel:octane_98',
-     'gauge',
-     'girth',
-     'gns:dsg',
-     'gns:uni',
-     'goods',
-     'height',
-     'hgv',
-     'highway',
-     'historic',
-     'horse',
-     'iata',
-     'icao',
-     'incline',
-     'indoor',
-     'int_name',
-     'internet_access',
-     'internet_access:fee',
-     'is_capital',
-     'is_in',
-     'is_in:city',
-     'is_in:continent',
-     'is_in:country',
-     'is_in:country_code',
-     'is_in:county',
-     'is_in:state',
-     'junction',
-     'landcover',
-     'landmark',
-     'landuse',
-     'lanes',
-     'lay',
-     'layer',
-     'leisure',
-     'level',
-     'lit',
-     'loc_name',
-     'local_ref',
-     'man_made',
-     'managed',
-     'maneshi dham',
-     'mangeshi dham',
-     'maxheight',
-     'maxspeed',
-     'merge_id',
-     'microbrewery',
-     'military',
-     'motor_vehicle',
-     'motorcar',
-     'motorcycle',
-     'motorroad',
-     'name',
-     'name-hi',
-     'name:',
-     'name:bn',
-     'name:cs',
-     'name:de',
-     'name:en',
-     'name:es',
-     'name:fr',
-     'name:gu',
-     'name:hi',
-     'name:jbo',
-     'name:kn',
-     'name:ma',
-     'name:mr',
-     'name:pt',
-     'name:ru',
-     'name:sk',
-     'name:sr',
-     'name:ta',
-     'name:te',
-     'natural',
-     'new_name',
-     'no_name',
-     'noexit',
-     'noname',
-     'note',
-     'number',
-     'office',
-     'old_name',
-     'oneway',
-     'oneway:bicycle',
-     'opening_hours',
-     'operator',
-     'park_ride',
-     'parking',
-     'passengers',
-     'payment:bitcoin',
-     'phone',
-     'place',
-     'place:cca',
-     'place_name',
-     'platforms',
-     'population',
-     'postal_code',
-     'postcode',
-     'power',
-     'proposed',
-     'protect_class',
-     'public_access',
-     'public_transport',
-     'railway',
-     'rank',
-     'ref',
-     'ref:new',
-     'religion',
-     'rental',
-     'repair',
-     'residential',
-     'road',
-     'route',
-     'sale',
-     'seamark:fixme',
-     'seamark:landmark:height',
-     'seamark:light:1:colour',
-     'seamark:light:1:range',
-     'seamark:light:1:sector_end',
-     'seamark:light:1:sector_start',
-     'seamark:light:2:colour',
-     'seamark:light:2:range',
-     'seamark:light:2:sector_end',
-     'seamark:light:2:sector_start',
-     'seamark:light:3:colour',
-     'seamark:light:3:range',
-     'seamark:light:3:sector_end',
-     'seamark:light:3:sector_start',
-     'seamark:light:4:colour',
-     'seamark:light:4:range',
-     'seamark:light:4:sector_end',
-     'seamark:light:4:sector_start',
-     'seamark:light:category',
-     'seamark:light:character',
-     'seamark:light:colour',
-     'seamark:light:group',
-     'seamark:light:height',
-     'seamark:light:information',
-     'seamark:light:multiple',
-     'seamark:light:orientation',
-     'seamark:light:period',
-     'seamark:light:range',
-     'seamark:light:ref',
-     'seamark:light:sequence',
-     'seamark:longname',
-     'seamark:name',
-     'seamark:radar_transponder:category',
-     'seamark:radar_transponder:group',
-     'seamark:topmark',
-     'seamark:type',
-     'seasonal',
-     'service',
-     'shelter',
-     'ship:type',
-     'shirdi',
-     'shop',
-     'shop:type',
-     'sidewalk',
-     'smoking',
-     'social_facility',
-     'source',
-     'source:position',
-     'source:tracer',
-     'source:url',
-     'source:zoomlevel',
-     'sport',
-     'stars',
-     'start_date',
-     'step_count',
-     'steps',
-     'street parking',
-     'supervised',
-     'surface',
-     'sym',
-     'tactile_paving',
-     'taxi',
-     'tidal',
-     'toilets',
-     'toll',
-     'tourism',
-     'tower:type',
-     'tracktype',
-     'traffic_sign',
-     'trail_visibility',
-     'train',
-     'tunnel',
-     'turn:lanes',
-     'type',
-     'url',
-     'usage',
-     'vehicle',
-     'voltage',
-     'water',
-     'waterway',
-     'watland',
-     'website',
-     'wetland',
-     'wheelchair',
-     'width',
-     'wifi',
-     'wikipedia',
-     'wires',
-     'wp:foot',
-     'wp:highway',
-     'wp:rampatbeg',
-     'wp:rampatend',
-     'wpt_description',
-     'wpt_symbol'])</code></pre>
+     -
+     -
+     ---------OUTPUT HIDDEN---------</code></pre>
 <blockquote>
 <p>As we notice, there are a few abbreviated field names and some have been repeated like addr:postcode and postcode, which need to be taken care of.</p>
 </blockquote>
@@ -586,7 +286,7 @@ for event, element in ET.iterparse(mumbai_file):
                     list_of_amenities.add(child.attrib['v'])
             except:
                 pass
-
+           
 
 pprint(list_of_amenities)</code></pre>
 <pre><code>set(['Canteen',
@@ -594,77 +294,10 @@ pprint(list_of_amenities)</code></pre>
      'Gym',
      'Gymkhana',
      'Society',
-     'Workshop',
-     'arts_centre',
-     'atm',
-     'bank',
-     'bar',
-     'bench',
-     'bicycle_rental',
-     'bureau_de_change',
-     'bus_station',
-     'cafe',
-     'car_wash',
-     'cinema',
-     'clinic',
-     'club',
-     'cold_storage',
-     'college',
-     'community_centre',
-     'courthouse',
-     'creamatorium',
-     'crematorium',
-     'cyber_cafe',
-     'doctors',
-     'drinking_water',
-     'fairgrounds',
-     'fast_food',
-     'ferry_terminal',
-     'fire_station',
-     'food_court',
-     'fountain',
-     'fuel',
-     'fuel; kiosk',
-     'grave_yard',
-     'gym',
-     'hospital',
-     'ice_cream',
-     'kindergarten',
-     'library',
-     'market',
-     'marketplace',
-     'nightclub',
-     'parking',
-     'parking;fuel',
-     'pharmacy',
-     'picnic spot',
-     'pl',
-     'place_of_worship',
-     'police',
-     'post_box',
-     'post_office',
-     'prison',
-     'pub',
-     'public_building',
-     'restaurant',
-     'restroom',
-     'school',
-     'shelter',
-     'shop',
-     'social_centre',
-     'social_facility',
-     'studio',
-     'swimming_pool',
-     'taxi',
-     'tea_shop',
-     'telephone',
-     'theatre',
-     'toilets',
-     'townhall',
-     'university',
-     'vending_machine',
-     'waste_transfer_station',
-     'water'])</code></pre>
+     'Workshop
+     -
+     -
+     ---------OUTPUT HIDDEN---------</code></pre>
 <blockquote>
 <p>We notice that there are a few entries where there are multiple input values in the form of ‘;’ seperated values.</p>
 </blockquote>
@@ -753,10 +386,10 @@ for event, element in ET.iterparse(mumbai_file):
                         if sub_field not in languages:
                             languages_mapping[sub_field] = sub_field
                             languages.append(sub_field)
-
+        
             except:
                 pass
-
+    
 pprint(sorted(languages))</code></pre>
 <pre><code>['',
  'bn',
@@ -825,135 +458,27 @@ for event, element in ET.iterparse(mumbai_file):
                     postal_code.add(child.attrib['v'])
                 if child.attrib['k'] == &quot;addr:postcode&quot;:
                     postcode.add(child.attrib['v'])
-
+                    
             except:
                 pass
 
 pprint(postal_code)
 pprint(postcode)</code></pre>
 <pre><code>set(['400001',
-     '400002',
-     '400003',
-     '400004',
-     '400005',
-     '400006',
-     '400007',
-     '400008',
-     '400009',
-     '400011',
-     '400013',
-     '400018',
-     '400020',
-     '400021',
-     '400023',
-     '400026',
-     '40003',
-     '400034',
-     '400036',
-     '40013',
-     '400702',
-     '401200',
-     '401204',
-     '402106',
-     '402200',
-     '402202',
-     '402203',
-     '402204',
-     '410200',
-     '410201',
-     '410202',
-     '410205',
-     '410210',
-     '410218',
-     '410300',
-     '410400',
-     '410401',
-     '421100',
-     '421301',
-     '421302',
-     '421501',
-     '421503',
-     '421601',
-     '421604'])
-set([' 410201',
+     -
+     -
+     ---------OUTPUT HIDDEN---------',
      '400 022',
      '400 601',
-     '400001',
-     '400005',
-     '400007',
-     '400010',
-     '400013',
-     '400016',
-     '400018',
-     '400019',
-     '400020',
-     '400021',
-     '400022',
-     '400030',
-     '400033',
-     '400034',
-     '400035',
-     '400036',
-     '400038',
-     '400039',
-     '400043',
-     '400047',
-     '400049',
-     '400050',
-     '400052',
-     '400053',
-     '400054',
-     '400056',
-     '400057',
-     '400058',
-     '4000607',
-     '400061',
-     '400062',
-     '400063',
-     '400064',
-     '400066',
-     '400067',
-     '400068',
-     '400069',
-     '400071',
-     '400072',
-     '400074',
+    -
+     -
+     ---------OUTPUT HIDDEN---------
      '400076',
      '400076, India',
      '400077',
-     '400078',
-     '400080',
-     '400086',
-     '400087',
-     '400088',
-     '400089',
-     '400091',
-     '400093',
-     '400096',
-     '400098',
-     '400101',
-     '400102',
-     '400103',
-     '40049',
-     '40058',
-     '400601',
-     '400606',
-     '400607',
-     '400610',
-     '400614',
-     '400705',
-     '400706',
-     '401104 ',
-     '401202',
-     '401203',
-     '401303',
-     '410 201',
-     '410210',
-     '410701',
-     '421202',
-     '421501',
-     '421503',
-     '63103'])</code></pre>
+     -
+     -
+     ---------OUTPUT HIDDEN---------</code></pre>
 <blockquote>
 <p>Problems in Postcode variables <br /> 1. codes seperated by space in some cases <br /> 2. codes contain alphabets in some cases <br /> 3. multiple keys where postal codes can be found : addr:postcode, postal_code and postcode <br /></p>
 </blockquote>
@@ -965,32 +490,32 @@ set([' 410201',
 <div id="desired-structure-of-the-dictionary" class="section level3">
 <h3><em>Desired structure of the dictionary:</em></h3>
 <p><br /> <br /></p>
-<pre class="python"><code>  {
-      id : ,
-      type : ,
-      visible : ,
-      created : {
-                 version : ,
-                 changeset : ,
-                 timestamp : ,
-                 user : ,
-                 uid :
-               },
-      pos : [latitude, longitude],
-      address : {
-                 housenumber: ,
-                 postcode : ,
-                 street :
-                },
-      amenity : ,
-      cuisine : ,
-      name : ,
-      phone : ,
-      .
-      .
-      _other fields_
-      .
-      .
+<pre class="python"><code>  { 
+      id : , 
+      type : , 
+      visible : , 
+      created : { 
+                 version : , 
+                 changeset : , 
+                 timestamp : , 
+                 user : , 
+                 uid : 
+               }, 
+      pos : [latitude, longitude], 
+      address : { 
+                 housenumber: , 
+                 postcode : , 
+                 street : 
+                }, 
+      amenity : , 
+      cuisine : , 
+      name : , 
+      phone : , 
+      . 
+      . 
+      _other fields_ 
+      . 
+      . 
     }
     </code></pre>
 <blockquote>
@@ -999,86 +524,86 @@ set([' 410201',
 <pre class="python"><code>
 
 def shape_data(elements , current_dict):
-
+    
                                        #Head tags, decide the type of entry
-    if elements.tag in [&quot;node&quot;,&quot;way&quot;]:
+    if elements.tag in [&quot;node&quot;,&quot;way&quot;]:                             
         current_dict['type'] = elements.tag
-
-
-
+        
+        
+                                      
                                       # created field extracted from attributes of head tag
-        current_dict['created'] = {}
-        if 'lat' in elements.attrib and 'lon' in elements.attrib:
+        current_dict['created'] = {}                               
+        if 'lat' in elements.attrib and 'lon' in elements.attrib: 
             current_dict['pos']  =  [float(elements.attrib['lat']), float(elements.attrib['lon'])]
-
-
+            
+                                       
                                        # Other attributes contained in the head tag are added to the dictionary
         for attribute in elements.attrib:
             if attribute not in [&quot;lat&quot;, &quot;lon&quot;, &quot;user&quot;, &quot;uid&quot;, &quot;timestamp&quot;, &quot;changeset&quot;, &quot;version&quot;]:
                 current_dict[attribute] = elements.attrib[attribute]
             elif attribute in [&quot;user&quot;, &quot;uid&quot;, &quot;timestamp&quot;, &quot;changeset&quot;, &quot;version&quot;]:
                 current_dict['created'][attribute] = elements.attrib[attribute]
-
-
+    
+                              
     #'nd' tag of the way type of head tags are found and its ref attribute is added to the dictionary in a list
     if elements.tag == &quot;nd&quot;:
         if 'nd_ref' not in current_dict:
             current_dict['nd_ref'] = []
-        if 'ref' in elements.attrib:
+        if 'ref' in elements.attrib:    
             current_dict['nd_ref'].append(elements.attrib['ref'])
-
-
+    
+    
     # Child tags containing head tag as 'tag' are scanned one by one
     for element in elements:
-
+                                                    
         if element.tag == &quot;tag&quot;:
-
-            # Amentities are converted to a list as some contain multiple
+                                                    
+            # Amentities are converted to a list as some contain multiple 
             if element.attrib['k'] in [&quot;Amenity&quot;,&quot;amenity&quot;]:
                 if ';' in element.attrib['v']:
                     values = element.attrib['v'].split(';')
                     current_dict['amenity'] = values
                 else:
-                    current_dict['amenity'] = [element.attrib['v']]
-
-
-            #  Postal code is a duplicate field, it is inserted into the address field
+                    current_dict['amenity'] = [element.attrib['v']]  
+                                
+            
+            #  Postal code is a duplicate field, it is inserted into the address field                                         
             elif element.attrib['k'] == &quot;postal_code&quot;:
                     if 'address' not in current_dict:
                         current_dict[address] = {}
                         current_dict['address']['postcode'] = int(element.attrib['v'])
 
-            # another duplicate field for addr:postcode
+            # another duplicate field for addr:postcode                                      
             elif element.attrib['k'] == &quot;postcode&quot;:
                 if 'address' not in current_dict:
                         current_dict[address] = {}
                 current_dict['address']['postcode'] = int(element.attrib['v'])
 
-            # Fields containing sub fields are scanned
+            # Fields containing sub fields are scanned                                      
             elif ':' in element.attrib['k']:
-
+                
                  # split the name by ':' to get the parent field and its sub field
-                splitted_fields = element.attrib['k'].split(':')
+                splitted_fields = element.attrib['k'].split(':')  
                 parent = splitted_fields[0]
 
                 # If parent field isn't present inintialise
                 # it as an empty dictionary
                 # Abbreviated names are changed to their full
                 # names from keys_with_sub_types variable
-                if keys_with_sub_types[parent] not in current_dict:
+                if keys_with_sub_types[parent] not in current_dict:  
                     current_dict[keys_with_sub_types[parent]] = {}
-                elif type(current_dict[keys_with_sub_types[parent]]) != type({}):
-                    value = current_dict[keys_with_sub_types[parent]]
-                    current_dict[keys_with_sub_types[parent]] = {}
-                    current_dict[keys_with_sub_types[parent]][parent] = value
-
+                elif type(current_dict[keys_with_sub_types[parent]]) != type({}):      
+                    value = current_dict[keys_with_sub_types[parent]]                  
+                    current_dict[keys_with_sub_types[parent]] = {}                     
+                    current_dict[keys_with_sub_types[parent]][parent] = value          
+                
                 if parent == &quot;addr&quot; and element.attrib('k').split(':')[1] == &quot;postcode&quot;:
-
+                    
                     current_dict[keys_with_sub_types[parent]]['postcode'] = element.attrib('v').strip(' ').split(',')[0]
-
-
+                    
+                
                 # If the parent field is name, get its
-                # sub field and insert with suitable full name of
+                # sub field and insert with suitable full name of 
                 # the language from language_mapping variable
                 elif parent == &quot;name&quot;:
                     sub_name = splitted_fields[1]
@@ -1087,9 +612,9 @@ def shape_data(elements , current_dict):
                 elif len(splitted_fields) &gt; 2:
                     temp_dict  = {}
                     temp_dict1 = {}
-                    temp_dict1[splitted_fields[-1]] = element.attrib['v']
-
-                    for i in range(2,len(splitted_fields)):
+                    temp_dict1[splitted_fields[-1]] = element.attrib['v']             
+                                                                                       
+                    for i in range(2,len(splitted_fields)):                            
                         temp_dict[splitted_fields[-1*i]] = temp_dict1
                         temp_dict1 = temp_dict
 
@@ -1097,41 +622,41 @@ def shape_data(elements , current_dict):
 
                 else:
                     current_dict[keys_with_sub_types[parent]][splitted_fields[1]] = element.attrib['v']
-
+            
             # for any other parent field insert with suitable
             # corrections from keys_with_sub_types
             else:
                 attribute = element.attrib['k']
                 attribute = attribute.lower()
                 try:
-                    if type(current_dict[attribute]) == type({}):
-                        current_dict[attribute][attribute] = element.attrib['v']
+                    if type(current_dict[attribute]) == type({}):                       
+                        current_dict[attribute][attribute] = element.attrib['v']        
                     else:
                         current_dict[attribute] = element.attrib['v']
                 except:
                     current_dict[attribute] = element.attrib['v']
 
-
+                
     return current_dict
 
 
 
 def create_dictionary(mumbai_file):
-
+    
     json_list = []
     current_dict = {}
-
+    
     for event, element in ET.iterparse(mumbai_file):
-
+        
         # as soon as new node/way is detected append the current dictionary
         # and clear it fit the contents of the new node/way.
         if element.tag in [&quot;node&quot;, &quot;way&quot;]:
-            json_list.append(current_dict)
-            current_dict = {}
+            json_list.append(current_dict)                  
+            current_dict = {}                               
             current_dict = shape_data(element, current_dict)
         elif element.tag not in [&quot;relation&quot;, &quot;bounds&quot;]:
             current_dict = shape_data(element, current_dict)
-
+            
     return json_list
 
 final_dictionary = create_dictionary(mumbai_file)
@@ -1315,7 +840,7 @@ pprint(list(user_contributions))</code></pre>
 <div id="conclusion-and-other-ideas-about-the-dataset" class="section level1">
 <h1>Conclusion and other ideas about the dataset</h1>
 <blockquote>
-<p>When we audit the data, it is quite clear that although there are minor errors caused by human input, the dataset is fairly well-cleaned. Considering there are lots of contributors for this map, there are a great number of human errors in this project. I’d recommend a structured input form so everyone can input the same data format to reduce this error or we can create a more robust script to clean the data on a regular basis.</p>
+<p>When we audit the data, it is quite clear that although there are minor errors caused by human input, the dataset is fairly well-cleaned. Considering there are lots of contributors for this map, there are a great number of human errors in this project. I’d recommend a structured input form so everyone can input the same data format to reduce this error or we can create a more robust script to clean the data on a regular basis. <br /> The structured input will make the cleaning of data much easier. We can even specify data types and constraints on certain fields thus making comparison easier and maintaining the integrity of the data. <br /> The above said solution is a bit difficult to implement. It would require a person to dedicate all of this time in writing scripts and designig the input struture, also users may find it difficult to submit data programatically because of such constraints. It might be a good idea to reward user’s with more contributions in such senarios</p>
 </blockquote>
 </div>
 
