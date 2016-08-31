@@ -698,6 +698,9 @@ pprint(list(user_contributions))
      {u'_id': u'Shekhar11', u'count': 4717},
      {u'_id': u'jain zachariah', u'count': 4545},
      {u'_id': u'katpatuka', u'count': 4402}]
+
+> We can see a highly skewed distribution in terms of contribution
+
     
 ### _List of Cuisines in Mumbai_
 
@@ -727,6 +730,9 @@ pprint(list(record.aggregate([{"$match": {'cuisine': {"$exists": 1}}},
      {u'_id': u'spanish', u'count': 1},
      {u'_id': u'sad_food', u'count': 1},
      {u'_id': u'Goan', u'count': 1}]
+     
+> The numbers although aren't enough to draw conclusions, but it's still not a matter of surprise
+that Indian cuisine is the highest in number.
     
 ### _Top 20 Amenities in Mumbai_
 
@@ -758,6 +764,8 @@ pprint(list(record.aggregate([{"$match": {'amenity': {"$exists": 1}}},
      {u'_id': [u'marketplace'], u'count': 27},
      {u'_id': [u'public_building'], u'count': 22}]
     
+> Its quite surprising that there are so many places of worship!, other figures are as expected.
+
 
 ### _Top 10 types of buildings in Mumbai_
 
@@ -778,7 +786,10 @@ pprint(list(record.aggregate([{"$match": {'building': {"$exists": 1}}},
      {u'_id': u'concourse', u'count': 40},
      {u'_id': u'commercial', u'count': 17},
      {u'_id': u'roof', u'count': 9}]
-    
+
+> Lots of Residential buildings and appartments, nothing surprising as Mumbai is one of India's
+most populated cities.
+
 ### _Top 10 Postcodes in the area_
 
 ```python

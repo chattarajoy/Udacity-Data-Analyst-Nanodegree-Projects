@@ -749,6 +749,9 @@ pprint(list(user_contributions))</code></pre>
  {u'_id': u'Shekhar11', u'count': 4717},
  {u'_id': u'jain zachariah', u'count': 4545},
  {u'_id': u'katpatuka', u'count': 4402}]</code></pre>
+<blockquote>
+<p>We can see a highly skewed distribution in terms of contribution</p>
+</blockquote>
 <div id="list-of-cuisines-in-mumbai" class="section level3">
 <h3><em>List of Cuisines in Mumbai</em></h3>
 <pre class="python"><code>pprint(list(record.aggregate([{&quot;$match&quot;: {'cuisine': {&quot;$exists&quot;: 1}}},
@@ -773,7 +776,11 @@ pprint(list(user_contributions))</code></pre>
  {u'_id': u'thai', u'count': 1},
  {u'_id': u'spanish', u'count': 1},
  {u'_id': u'sad_food', u'count': 1},
- {u'_id': u'Goan', u'count': 1}]</code></pre>
+ {u'_id': u'Goan', u'count': 1}]
+ </code></pre>
+<blockquote>
+<p>The numbers although aren’t enough to draw conclusions, but it’s still not a matter of surprise that Indian cuisine is the highest in number.</p>
+</blockquote>
 </div>
 <div id="top-20-amenities-in-mumbai" class="section level3">
 <h3><em>Top 20 Amenities in Mumbai</em></h3>
@@ -801,6 +808,9 @@ pprint(list(user_contributions))</code></pre>
  {u'_id': [u'toilets'], u'count': 35},
  {u'_id': [u'marketplace'], u'count': 27},
  {u'_id': [u'public_building'], u'count': 22}]</code></pre>
+<blockquote>
+<p>Its quite surprising that there are so many places of worship!, other figures are as expected.</p>
+</blockquote>
 </div>
 <div id="top-10-types-of-buildings-in-mumbai" class="section level3">
 <h3><em>Top 10 types of buildings in Mumbai</em></h3>
@@ -818,6 +828,9 @@ pprint(list(user_contributions))</code></pre>
  {u'_id': u'concourse', u'count': 40},
  {u'_id': u'commercial', u'count': 17},
  {u'_id': u'roof', u'count': 9}]</code></pre>
+<blockquote>
+<p>Lots of Residential buildings and appartments, nothing surprising as Mumbai is one of India’s most populated cities.</p>
+</blockquote>
 </div>
 <div id="top-10-postcodes-in-the-area" class="section level3">
 <h3><em>Top 10 Postcodes in the area</em></h3>
