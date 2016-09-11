@@ -17,7 +17,7 @@ features_list = ['poi']
 with open("final_project_dataset.pkl", "r") as data_file:
     data_dict = pickle.load(data_file)
     my_dataset = data_dict
-    
+
 
 # features not to be included in the dataset
 unuseful_features = ['poi', 'email_address']
@@ -30,11 +30,11 @@ for key in my_dataset:
     break
 
 ### Task 2: Remove outliers
-   
+
 data_dict.pop('TOTAL')
 data_dict.pop('THE TRAVEL AGENCY IN THE PARK')
 
-### Task 3: Create new feature(s) 
+### Task 3: Create new feature(s)
 
 for key in data_dict:
     try:
@@ -85,7 +85,7 @@ features_list = new_features_list
 from sklearn.cross_validation import train_test_split
 features_train, features_test, labels_train, labels_test = \
     train_test_split(features, labels, test_size=0.3, random_state=42)
-    
+
 # Decision Tree Classifier
 
 from sklearn.tree import DecisionTreeClassifier
@@ -111,12 +111,24 @@ from sklearn.ensemble import AdaBoostClassifier
 ab_clf = AdaBoostClassifier(algorithm = 'SAMME', n_estimators = 5)
 ab_clf.fit(features_train, labels_train)
 
-### Task 5: Tune your classifier to achieve better than .3 precision and recall 
+### Task 5: Tune your classifier to achieve better than .3 precision and recall
 ### using our testing script. Check the tester.py script in the final project
 ### folder for details on the evaluation method, especially the test_classifier
 ### function. Because of the small size of the dataset, the script uses
-### stratified shuffle split cross validation. For more info: 
+### stratified shuffle split cross validation. For more info:
 ### http://scikit-learn.org/stable/modules/generated/sklearn.cross_validation.StratifiedShuffleSplit.html
+
+#Evaluation
+
+pred = tree_clf.predict(features_test)
+
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import precision_score
+from sklearn.metrics import recall_score
+
+print "Accuracy: ", accuracy_score(pred, labels_test)
+print "Precision Score: ", precision_score(labels_test, pred)
+print "Recall Score: ", recall_score(labels_test, pred)
 
 #Select a classifier as final
 
