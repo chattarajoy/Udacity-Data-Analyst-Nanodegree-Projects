@@ -1,6 +1,3 @@
----
-output: pdf_document
----
 # Identifying Fraud from Enron Emails Dataset
 
 #### *by Joy Lal Chattaraj*
@@ -113,6 +110,6 @@ Thus we consider `recall_score` and `precision_score` for evaluation.
 |   RandomForestClassifier	| 0.39343 	| 0.23350  	| 0.29307 |
 |   AdaBoostClassifier	|  0.45157 	|  0.32400 	| 0.37729 |
 
-> Thus I ended up using `DecisionTreeClassifier` as it had better scores than others. In common terms the `DecisionTreeClassifier` can predict 45.5% of the poi's present in the dataset (recall score) and out of all the poi's predicted by the classifier 42% are actually a Person of Interest and when looking at F1 score we ensure that we get the best of both worlds : precision and recall.
+> Thus, I ended up using `DecisionTreeClassifier` as it had better scores than others. In common terms the `DecisionTreeClassifier` can predict 45.5% of the poi's present in the dataset (recall score) and out of all the poi's predicted by the classifier 42% are actually a Person of Interest and when looking at F1 score we ensure that we get the best of both worlds : precision and recall.
 
 
