@@ -137,11 +137,9 @@ sv_clf = sv_clf.best_estimator_
 
 pred = tree_clf.predict(features_test)
 
-from sklearn.metrics import accuracy_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import recall_score
 
-print "Accuracy: ", accuracy_score(pred, labels_test)
 print "Precision Score: ", precision_score(labels_test, pred)
 print "Recall Score: ", recall_score(labels_test, pred)
 
