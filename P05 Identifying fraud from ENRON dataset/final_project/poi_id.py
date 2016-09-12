@@ -33,6 +33,7 @@ for key in my_dataset:
 
 data_dict.pop('TOTAL')
 data_dict.pop('THE TRAVEL AGENCY IN THE PARK')
+data_dict.pop('LOCKHART EUGENE E')
 
 ### Task 3: Create new feature(s)
 
@@ -46,7 +47,7 @@ for key in data_dict:
     except:
         data_dict[key]['fraction_from_poi'] = "NaN"
 
-# add the features to features_list and remove the once they replace
+# add the features to features_list and remove the ones they replace
 
 features_list.remove('from_messages')
 features_list.remove('to_messages')
@@ -65,7 +66,7 @@ labels, features = targetFeatureSplit(data)
 #select the best features according to score
 
 from sklearn.feature_selection import SelectKBest
-selector = SelectKBest(k=10)
+selector = SelectKBest(k=12)
 features = selector.fit_transform(features, labels)
 feature_indices = selector.get_support(indices=True)
 
@@ -110,6 +111,20 @@ rf_clf.fit(features_train, labels_train)
 from sklearn.ensemble import AdaBoostClassifier
 ab_clf = AdaBoostClassifier(algorithm = 'SAMME', n_estimators = 5)
 ab_clf.fit(features_train, labels_train)
+
+# SVM Classifier using GridSearchCV
+# Not used in final code as it wasn't much useful, commented because takes a lot of time to run
+
+'''
+from sklearn.grid_search import GridSearchCV
+from sklearn.svm import SVC
+parameters = {'kernel': ['rbf', 'linear'], 'C': [1, 10, 100, 1000]}
+svm = SVC()
+sv_clf = GridSearchCV(svm, parameters)
+sv_clf.fit(features_train, labels_train)
+sv_clf = sv_clf.best_estimator_
+
+'''
 
 ### Task 5: Tune your classifier to achieve better than .3 precision and recall
 ### using our testing script. Check the tester.py script in the final project

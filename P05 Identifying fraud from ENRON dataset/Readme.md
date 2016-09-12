@@ -1,3 +1,6 @@
+---
+output: pdf_document
+---
 # Identifying Fraud from Enron Emails Dataset
 
 #### *by Joy Lal Chattaraj*
@@ -13,16 +16,22 @@
 
 >The goal of this project was to utilize the financial and email data from Enron to build a predictive that could identify whether an individual could be considered a "person of interest" (POI). The Enron corpus - publicly maed by US Federal Energy Regulatory Comission during its investgiation of Enron, which comprised of email and financial data of 146 people (records), most of which are senior management of Enron. The corpus is widely used for various machine learning problem and although it has been labeled aready, the value is the potential application for similar cases in other companies or spam filtering application. The dataset contained 146 records with 1 labeled feature (POI), 14 financial features, 6 email feature. Within these record, 18 were labeled as a "Person Of Interest" (POI).
 
->While trying to find outliers, I used the `matplotlib` library to plot the points on a scatter plot for fields `salary` and `bonus`. I found an outlier whose value was way higher than others. Upon further inestigation I figured out that the key for it was `TOTAL` which wasn't a valid data point for our dataset. I could figure out aonther outlier with an unusually long name when I was scanning throught the list of keys, it was `THE TRAVEL AGENCY IN THE PARK`.
+>While trying to find outliers, I used the `matplotlib` library to plot the points on a scatter plot for fields `salary` and `bonus`. I found an outlier whose value was way higher than others. Upon further inestigation I figured out that the key for it was `TOTAL` which wasn't a valid data point for our dataset. I could figure out another outlier with an unusually long name when I was scanning through the list of keys, it was `THE TRAVEL AGENCY IN THE PARK`.Finally I could figure out another outlier `LOCKHART EUGENE E` that contained only NaN's i.e. it didn't give us any information.
 
 >So, Outliers detected are:
 
 * `TOTAL` action taken : key popped out from dictionary as it wasn't a valid datapoint
-* `THE TRAVEL AGENCY IN THE PARK` : again I popped the key out of the dict for the same reason<br/><br/>
+* `THE TRAVEL AGENCY IN THE PARK` : again I popped the key out of the dict for the same reason
+* `LOCKHART EUGENE E` : popped out, didn't contain any data <br/><br/>
 
 #### Q2. What features did you end up using in your POI identifier, and what selection process did you use to pick them? Did you have to do any scaling? Why or why not? As part of the assignment, you should attempt to engineer your own feature that does not come ready-made in the dataset -- explain what feature you tried to make, and the rationale behind it. In your feature selection step, if you used an algorithm like a decision tree, please also give the feature importances of the features that you use, and if you used an automated feature selection function like SelectKBest, please report the feature scores and reasons for your choice of parameter values.<br/><br/>
 
-> First of all I used `scikit-learn's` `MinMaxScaler` to scale the features, as many of the financial and email features varied over different ranges, it was important to scale them so that they are valued evenly.
+> First of all I used `scikit-learn's` `MinMaxScaler` to scale the features, as many of the financial and email features varied over different ranges, it was important to scale them so that they are valued evenly. There are a few more advantages of feature scaling :<br/>
+1. It makes your training faster.<br/>
+2. It prevents you from getting stuck in local optima.<br/>
+3. SVM and GaussianNB optimization can be done more conveniently.<br/>
+
+> However a few algorithms like decison trees and random forest which are not effected by feature scaling.
 
 > I looked at a list of NA's for the dataset as a lot of info was missing. Here is a list of what I found
 
@@ -52,7 +61,7 @@
 
 > Since the `Loan Advances` feature dosen't give us much information (141 out of 144 are NA), so I decided to remove it straight away.
 
-> Then I used the `SelectKBest` library from sklearn to find the top 10 features according to their scores. Here is a list of scores of the top 10 features
+> Then I used the `SelectKBest` library from sklearn to find the top 12 features according to their scores. Here is a list of scores of the top features
 
 | Feature	| Score |
 |---	|---	|
@@ -66,18 +75,26 @@
 | TOTAL PAYMENTS  | 8.7727	|
 | SHARED RECEIPT WOTH POI  	| 8.589	|
 | LOAN ADVANCES  	| 7.18  |
+| EXPENSES | 6.09 |
+| OTHER | 4.28 |
+| FRACTION TO POI | 3.12 |
+| DIRECTOR FEES | 2.12 |
+
+> After this, the scores were really low (below 0.5). Initially I had selected 15 of the best features, but after running the code multiple times on different values of K , I could figure out that 12 was the number of features best suited for my algorithm and I could ignore rest of the features with a lower score.
 
 > The features `faction_from_poi` and `fraction_to_poi` were created by me. The features `to_poi` and `from_poi` didnot make much sense, So I decided to make these features relative, i.e. what fraction of a person's email were sent to a poi and were from a poi. This would neutralize the effect of number of emails sent by user. Suppose a person sends a 100 emails per day sends 5 emails to a poi and another person sends 5 emails per day sent 2 mails to poi. Now earlier the first person would be considered more important but now the second person has a greater chance to be a poi as 40% of his/her mails are sent to a poi. It was a similar case with the feature `fraction from poi`.<br/><br/>
 
 
 #### Q3. What algorithm did you end up using? What other one(s) did you try? How did model performance differ between algorithms?<br/><br/>
 
-> After trying 5 algorithms, I finally decided to use the `DecisionTreeClassifer`. I also tried the following algorithms:
+> After trying 5 algorithms, I finally decided to use the `DecisionTreeClassifer` because of the higher recall score. This meant that in a given sample we could predict (correctly) a greater percentage of poi's present in the sample. It was important not to miss many poi's although we could afford to cross examine a few innocent ones. I also tried the following algorithms:
 
 * `Gaussian Naive Bayes` : I got good results without much effort but the result of decision tree was better
-* `Support Vector Machine Classifier` : I couldn't find any success here
+* `Support Vector Machine Classifier` : I couldn't find any success here most of the times I got a score of 0.0 (in terms of both precision and recall)
 * `Random forest Classifier` : The result was satisfactory but the recall was a bit on the lower side and run time was really high
-* `AdaBoost Classifier` : Good result but decision tree did a better job in lesser time
+* `AdaBoost Classifier` : Good result (precision and recall above 0.3) but decision tree did a better job in lesser time
+
+> I have included the scores of all the alogrithms mentioned above in the final section of this document.
 
 #### Q4. What does it mean to tune the parameters of an algorithm, and what can happen if you don't do this well?  How did you tune the parameters of your particular algorithm? .
 
@@ -106,10 +123,11 @@ Thus we consider `recall_score` and `precision_score` for evaluation.
 |---	|---	|---	|---  |
 |   GaussianNB	|  0.36639 	|   0.31400	| 0.33818 |
 |   svm.SVC	|   -	|   -	| - |
-|   DecisionTreeClassifier	| 0.42098	|  0.45550 	| 0.43756 |
+|   DecisionTreeClassifier	| 0.40008	|  0.50350 	| 0.45 |
 |   RandomForestClassifier	| 0.39343 	| 0.23350  	| 0.29307 |
 |   AdaBoostClassifier	|  0.45157 	|  0.32400 	| 0.37729 |
 
-> Thus, I ended up using `DecisionTreeClassifier` as it had better scores than others. In common terms the `DecisionTreeClassifier` can predict 45.5% of the poi's present in the dataset (recall score) and out of all the poi's predicted by the classifier 42% are actually a Person of Interest and when looking at F1 score we ensure that we get the best of both worlds : precision and recall.
+> Thus, I ended up using `DecisionTreeClassifier` as it had better scores than others. In common terms the `DecisionTreeClassifier` can identify 50.3% of the poi's present in the dataset correctly (recall score), i.e. if 100 poi's were present in the dataset it would identify 50 of them . The precision score says that out of every 100 people it says are poi, 39 of them would actually be poi whereas rest of them would be innocent. Since not missing a poi should be our priority we can afford to label a few non-poi's as poi if we can acheive a greater recall score. That is what I have done, I allowed the precision to lower when I saw an increase in recall score. This would ensure that we miss lesser number poi's in a given sample. 
 
+> The F1 score is a measure that gives us the best of both, i.e. it maintains a balance between recall and precision.
 
