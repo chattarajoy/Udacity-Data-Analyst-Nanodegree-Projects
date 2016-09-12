@@ -28,11 +28,11 @@
 2. It prevents you from getting stuck in local optima.<br/>
 3. SVM and GaussianNB optimization can be done more conveniently.<br/>
 
-> However a few algorithms like decison trees and random forest which are not effected by feature scaling.
+> However a few algorithms like decison trees and random forest are not effected by feature scaling.
 
-> I looked at a list of NA's for the dataset as a lot of info was missing. Here is a list of what I found
+> I looked at a list of NaN's for the dataset as a lot of info was missing. Here is a list of what I found
 
-| Feature Name | Number of NA's |
+| Feature Name | Number of NaN's |
 |---	|---	|
 |  POI 	|  0 	|
 |  SALARY 	|  50 	|
@@ -56,7 +56,7 @@
 | FROM THIS PERSON TO POI  | 58 |
 
 
-> Since the `Loan Advances` feature dosen't give us much information (141 out of 144 are NA), so I decided to remove it straight away.
+> Since the `Loan Advances` feature dosen't give us much information (141 out of 144 are NaN), so I decided to remove it straight away.
 
 > Then I used the `SelectKBest` library from sklearn to find the top 12 features according to their scores. Here is a list of scores of the top features
 
