@@ -1,6 +1,3 @@
----
-output: pdf_document
----
 # Identifying Fraud from Enron Emails Dataset
 
 #### *by Joy Lal Chattaraj*
