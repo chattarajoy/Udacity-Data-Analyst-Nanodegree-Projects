@@ -77,7 +77,27 @@
 | FRACTION TO POI | 3.12 |
 | DIRECTOR FEES | 2.12 |
 
-> After this, the scores were really low (below 0.5). Initially I had selected 15 of the best features, but after running the code multiple times on different values of K , I could figure out that 12 was the number of features best suited for my algorithm and I could ignore rest of the features with a lower score.
+> After this, the scores were really low (below 0.5). Initially I had selected 15 of the best features, but after running the code multiple times on different values of K , I could figure out that 12 was the number of features best suited for my algorithm and I could ignore rest of the features with a lower score. Below are the results:
+
+
+#### *Number of features vs classifier score*
+
+| Algorithm | Number of Features	| Recall Score | Precision Score |
+|---	|---	|---  |---  |
+| Decision Tree Classifier | 15 | 0.38782	|0.47450 |
+| Decision Tree Classifier | 14 | 0.38735 |0.47450 |
+| Decision Tree Classifier | 13 | 0.38839 |0.47500 |
+| Decision Tree Classifier | 12 | 0.40024 |0.50350|
+| Decision Tree Classifier | 11 | 0.41979 |0.45400|
+| Decision Tree Classifier | 10 | 0.41955	|0.45500|
+| GaussianNB | 10 | 0.36639 | 0.31400	|
+| GaussianNB | 12 | 0.32430	| 0.31100|
+| Random Forest | 10 | 0.39343 | 0.23350|
+| Random Forest | 12 | 0.40413 |0.21700 |
+| Adaboost | 10 |0.45157 | 0.32400|
+|Adaboost | 12 | 0.40959 | 0.31600|
+
+
 
 > The features `faction_from_poi` and `fraction_to_poi` were created by me. The features `to_poi` and `from_poi` didnot make much sense, So I decided to make these features relative, i.e. what fraction of a person's email were sent to a poi and were from a poi. This would neutralize the effect of number of emails sent by user. Suppose a person sends a 100 emails per day sends 5 emails to a poi and another person sends 5 emails per day sent 2 mails to poi. Now earlier the first person would be considered more important but now the second person has a greater chance to be a poi as 40% of his/her mails are sent to a poi. It was a similar case with the feature `fraction from poi`.<br/><br/>
 
