@@ -26,7 +26,6 @@
 > First of all I used `scikit-learn's` `MinMaxScaler` to scale the features, as many of the financial and email features varied over different ranges, it was important to scale them so that they are valued evenly. There are a few more advantages of feature scaling :<br/>
 1. It makes your training faster.<br/>
 2. It prevents you from getting stuck in local optima.<br/>
-3. SVM and GaussianNB optimization can be done more conveniently.<br/>
 
 > However a few algorithms like decison trees and random forest are not effected by feature scaling.
 
