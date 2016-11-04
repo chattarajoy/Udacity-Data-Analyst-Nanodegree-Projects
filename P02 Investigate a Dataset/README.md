@@ -1073,7 +1073,7 @@ plt.show()
 ```
 
 
-![png](output_46_0.png)
+![png](img/output_46_0.png)
 
 
 > The Visuals clearly point out that as we move towards the upper classes, chances of survival increases. To check if our intution is correct, we can perform a chi-squared test to see if the results are statistically significatnt.
@@ -1197,7 +1197,7 @@ plt.show()
 ```
 
 
-![png](output_57_0.png)
+![png](img/output_57_0.png)
 
 
 > Thus, we observe a difference of more than 50% for survival rate between the two genders.To check if the result is significant we can carry out chi-squared test to calculate the p-value for the data as it is a categorical data.
@@ -1336,7 +1336,7 @@ plt.show()
 ```
 
 
-![png](output_68_0.png)
+![png](img/output_68_0.png)
 
 
 >Children (age group 0-18) seem to have a higher survival rate than the other groups. To check if the difference is statistically significant, we can carry out a ch-squared test.
