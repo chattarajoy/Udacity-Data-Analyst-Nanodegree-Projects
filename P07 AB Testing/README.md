@@ -75,11 +75,11 @@
 ***Pageviews for Each Evaluation Metric to Achieve Target Statistical
 Power***
 
-* Online Calculator used : http://www.evanmiller.org/ab-testing/sample-size.html
+>* Online Calculator used : http://www.evanmiller.org/ab-testing/sample-size.html
 
-#### Gross Conversion
+>#### Gross Conversion
 
-* Baseline Conversion: 20.625%
+>* Baseline Conversion: 20.625%
 * Minimum Detectable Effect: 1% 
 * Alpha: 5%
 * dmin = 0.01
@@ -90,9 +90,9 @@ Power***
 * Clicks/Pageview: 3200/40000 = 0.08 clicks/pageview 
 * Pageviews Required = 6,45,875
 
-#### Net Conversion
+>#### Net Conversion
 
-* Baseline Conversion: 10.9313% 
+>* Baseline Conversion: 10.9313% 
 * Minimum Detectable Effect: 0.75% 
 * Alpha: 5% -Beta: 20% 
 * Sensitivity (1 - Beta): 80% 
@@ -103,7 +103,7 @@ Power***
 * Enrollments/pageview: 3200/40000 = 0.08 clicks/pageview 
 * Pageviews = 6,85,325
 
-*Pageviews required is maximum of pageviews required for Gross
+>*Pageviews required is maximum of pageviews required for Gross
 Conversion, Retention, Net Conversion. Therefore, the required pageviews
 is 6,85,325*
 
@@ -178,18 +178,96 @@ is 6,85,325*
 
 *For each of your evaluation metrics, give a 95% confidence interval around the difference between the experiment and control groups. Indicate whether each metric is statistically and practically significant*
 
+<table style="width:119%;">
+<colgroup>
+<col width="12%" />
+<col width="23%" />
+<col width="23%" />
+<col width="23%" />
+<col width="23%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Metric</th>
+<th align="center">dmin</th>
+<th align="center">Observed Difference</th>
+<th align="center">CI Lower Bound</th>
+<th align="center">CI Upper Bound</th>
+<th align="center">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Gross Conversion</td>
+<td align="center">0.01</td>
+<td align="center">-0.0205</td>
+<td align="center">-.0291</td>
+<td align="center">-.0120</td>
+<td align="center">Satistically and Practically Significant</td>
+</tr>
+<tr class="even">
+<td align="center">Net Conversion</td>
+<td align="center">0.0075</td>
+<td align="center">-0.0048</td>
+<td align="center">-0.0116</td>
+<td align="center">0.0019</td>
+<td align="center">Neither Statistically nor Practically Significant</td>
+</tr>
+</tbody>
+</table>
 
-Sign Tests
-For each of your evaluation metrics, do a sign test using the day-by-day data, and report the p-value of the sign test and whether the result is statistically significant. (These should be the answers from the "Sign Tests" quiz.)
+### Sign Tests
+
+*For each of your evaluation metrics, do a sign test using the day-by-day data, and report the p-value of the sign test and whether the result is statistically significant.*
+
+<table>
+<thead>
+<tr class="header">
+<th align="center">Metric</th>
+<th align="center">p-value for sign test</th>
+<th align="center">Statistically Significant @ alpha .05?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Gross Conversion</td>
+<td align="center">0.0026</td>
+<td align="center">Yes</td>
+</tr>
+<tr class="even">
+<td align="center">Net Conversion</td>
+<td align="center">0.6776</td>
+<td align="center">No</td>
+</tr>
+</tbody>
+</table>
 
 
-Summary
-State whether you used the Bonferroni correction, and explain why or why not. If there are any discrepancies between the effect size hypothesis tests and the sign tests, describe the discrepancy and why you think it arose.
+
+### Summary
+
+*State whether you used the Bonferroni correction, and explain why or why not. If there are any discrepancies between the effect size hypothesis tests and the sign tests, describe the discrepancy and why you think it arose.*
+
+>I didn’t use Bonferroni correction because the metrics are not independent; thus, Bonferroni correction is too conservative for the test. Bonferroni correction could have been used if all the metrics were independent to reduce the value of aplha and thus reduce the chances of getting false positives (rejecting the null when the null is true).
+
+>Both effect size tests and sign tests result in having statistical significance in Gross Conversion but no statistical significance in Net Conversion. This means that although the experiment affects the users' decision to enroll the online courses but it didn't affect much to the enrolled users to pay the courses.
 
 
-Recommendation
-Make a recommendation and briefly describe your reasoning.
 
 
-Follow-Up Experiment
-Give a high-level description of the follow up experiment you would run, what your hypothesis would be, what metrics you would want to measure, what your unit of diversion would be, and your reasoning for these choices.
+### Recommendation
+
+*Make a recommendation and briefly describe your reasoning.*
+
+>I would recommend not to launch the experiment. The result of Gross Conversion showed statistically and practically significant changes after the pop-up message. This means that only those who are likely to commit more than 5 hours per week enroll the classes and they are more likely to make the first payments; this will reduce the costs of having those who are only taking free courses without making any payment. However, Net Conversion don't show statistically or practiclly significant changes after the test. This means that showing pop-up message to users before they enroll the classes don't affect the number of users who make their first payments after the free trial. Furthermore, the confidence interval of the net conversion includes the negative of the practical significance boundary which suggests the risk of hurting the Udacity's businiess.
+
+
+### Follow-Up Experiment
+
+*Give a high-level description of the follow up experiment you would run, what your hypothesis would be, what metrics you would want to measure, what your unit of diversion would be, and your reasoning for these choices.*
+
+>A follow-up experiment could be based upon motivation with only a slight change from the previous experiment. It would require a method to approximate the number of hours that each student dedicated to the material in the first week. If a student committed less than the recommended number of hours, a message would pop-up upon login before the start of the second week to motivate the student to commit more time by showing success stories of students who have already completed the nanodegree.Those that met the recommended number of hours wouldn’t get a direct message but could still access this repository of interviews from their course homepage under the ’Resources’ tab.
+
+> My hypothes is is that the message would motivate some students who might otherwise drop out during the 14-day trial to continue past and possibly complete the course. It would also not affect those people that would otherwise continue through the trial and complete the course had there been no pop-upmessage. In this case,the overall student experience in the forums could be more energized and improve beyond the ﬁrst week,and coaching resources would be used on more enthusiastic and dedicated students.
+Considering this design, retention rate would be the best way to test our hypothesis. Being that we would divert trafﬁc evenly among the control and experimental groups, the most suitable invariant metric would be the number of user-id's to complete checkout and enroll in the course. It would be practical at this point, to divert students into the control or experiment group. It’s worth noting that this experiment would likely take longer to conduct.
