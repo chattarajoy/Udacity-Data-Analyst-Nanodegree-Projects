@@ -17,43 +17,166 @@
 
 
 ## Experiment Design
-Metric Choice
-List which metrics you will use as invariant metrics and evaluation metrics here. (These should be the same metrics you chose in the "Choosing Invariant Metrics" and "Choosing Evaluation Metrics" quizzes.)
+
+### Metric Choice
+
+*List which metrics you will use as invariant metrics and evaluation metrics here.*
+
+>* Invariant Metrics : Number of cookies, Number of clicks
+>* Evaluation Metrics : Gross Conversion, Net Conversion
 
 
-For each metric, explain both why you did or did not use it as an invariant metric and why you did or did not use it as an evaluation metric. Also, state what results you will look for in your evaluation metrics in order to launch the experiment.
+*For each metric, explain both why you did or did not use it as an invariant metric and why you did or did not use it as an evaluation metric. Also, state what results you will look for in your evaluation metrics in order to launch the experiment.*
 
 
-Measuring Standard Deviation
-List the standard deviation of each of your evaluation metrics. (These should be the answers from the "Calculating standard deviation" quiz.)
+>* Number of cookies: This is a good invariant metric as it is calculated before the user views the experiment popup. So, the numbers would be similar in both control and experiment group. This explains why it cant't be a evaluation metric as it is not effected by the experiment.
+
+>* Number of user-ids: This isn't an invariant metric as it is dependent on the user deciding wether to enroll after he receives the experiment popup, thus it is effected by our experiment. Numbers are not usually a good evaluation metrics, rates and probabilities can serve much better. So, I decided not to use it as an evaluation metric.
+
+>* Number of clicks: Similar to the number of cookies, this value is independent from the experiment, so the number will be similar in experiment and control groups.Thus, this is a good invariant metric and not an evaluation metric.
+
+>* Click-through-probability: This is a good invariant metric because it is independent from the experiment. However, I didn't choose this metric as an invariant metric for the test because this value seems to be redundant to the number of cookies and the number of clicks. This is not an evaluation metric as it doesn't change because of our experiment.
+
+>* Gross Conversion: This is a good evaluation metric because it is dependent on the experiment (This explains why it cannot be a good invariant metric). We expect that the value will be lower in the experiment group because some people who are not able to commit more than 5 hours per week won't enroll the classes. In the control group, users won't see any pop-up message so they will enroll without any consideration of the number of hours they can commit per week.
+
+>* Retention: This is a good evaluation metric because it is dependent on the experiment (This explains why it cannot be a good invariant metric). We expect this value will be higher in the experiment group because majority of the group are those who can commit 5 hours per week and these people are more likely to make the first payments for the classes. However, I didn't choose this as an evaluation metric for the test because it is redundant to Gross conversion and Net conversion; this value can be calculated using Retention and Net Conversion.
+
+>* Net Conversion: This is a good evaluation metric because it is dependent on the experiment (This explains why it cannot be a good invariant metric). It would be great if this value increases after the test. However, due to the expected decrease in number of students enrolling the free trial, it is possible that net conversion might decrease after the test. However, since the majority of the experiment group are those who can commit 5 hours per week and they are more likely to make the first payments for the course. So we want this value doesn't decrease after the test.
+
+### Measuring Standard Deviation
+
+*List the standard deviation of each of your evaluation metrics.*
 
 
-For each of your evaluation metrics, indicate whether you think the analytic estimate would be comparable to the the empirical variability, or whether you expect them to be different (in which case it might be worth doing an empirical estimate if there is time). Briefly give your reasoning in each case.
+>* Gross Conversion : We Know S.E. = (p X (1 - p )/N)^1/2 
+  Here : p = 0.20625
+  N = (3200/40000)X5000
+  
+>  Thus, S.E = 0.0202
+
+>* Net Conversion : p = 0.1093, N = (3200/40000)X5000
+
+>  Thus, S.E. = 0.0156
 
 
-Sizing
-Number of Samples vs. Power
-Indicate whether you will use the Bonferroni correction during your analysis phase, and give the number of pageviews you will need to power you experiment appropriately. (These should be the answers from the "Calculating Number of Pageviews" quiz.)
+*For each of your evaluation metrics, indicate whether you think the analytic estimate would be comparable to the the empirical variability, or whether you expect them to be different (in which case it might be worth doing an empirical estimate if there is time). Briefly give your reasoning in each case.*
+
+>Gross Conversion and Net Conversion have the number of cookies as their denominators. Thus, the unit of diversion  is same as a unit of analysis. So, analytical estimate is comparable to the empirical variability.
 
 
-Duration vs. Exposure
-Indicate what fraction of traffic you would divert to this experiment and, given this, how many days you would need to run the experiment. (These should be the answers from the "Choosing Duration and Exposure" quiz.)
+### Sizing
+
+#### Number of Samples vs. Power
+
+*Indicate whether you will use the Bonferroni correction during your analysis phase, and give the number of pageviews you will need to power you experiment appropriately.*
+
+> No, Since the metric being used are not independent of each other it would be better not to use Bonferroni correction.
+
+***Pageviews for Each Evaluation Metric to Achieve Target Statistical
+Power***
+
+* Online Calculator used : http://www.evanmiller.org/ab-testing/sample-size.html
+
+#### Gross Conversion
+
+* Baseline Conversion: 20.625%
+* Minimum Detectable Effect: 1% 
+* Alpha: 5%
+* dmin = 0.01
+* Beta: 20% -Sensitivity (1 - Beta): 80% 
+* Sample Size = 25,835 enrollments/group 
+* Number of groups = 2 (experiment and control) 
+* Total sample size = 51,670 enrollments 
+* Clicks/Pageview: 3200/40000 = 0.08 clicks/pageview 
+* Pageviews Required = 6,45,875
+
+#### Net Conversion
+
+* Baseline Conversion: 10.9313% 
+* Minimum Detectable Effect: 0.75% 
+* Alpha: 5% -Beta: 20% 
+* Sensitivity (1 - Beta): 80% 
+* dmin = 0.0075
+* Sample size = 27,413 enrollments/group 
+* Number of groups = 2 (experiment and control) 
+* Total sample size = 54,826 enrollments 
+* Enrollments/pageview: 3200/40000 = 0.08 clicks/pageview 
+* Pageviews = 6,85,325
+
+*Pageviews required is maximum of pageviews required for Gross
+Conversion, Retention, Net Conversion. Therefore, the required pageviews
+is 6,85,325*
+
+#### Duration vs. Exposure
+
+*Indicate what fraction of traffic you would divert to this experiment and, given this, how many days you would need to run the experiment.* 
+
+>The fraction of traffic I would divert to this experiment is 0.8 . 
+>Given this fraction, I will need need ~ 22 days to run the experiment.
+
+*Give your reasoning for the fraction you chose to divert. How risky do you think this experiment would be for Udacity?*
+
+>Only 80% will be affected and the change due to the experiment is small, so it won't cause too much trouble in the overall business. The overall experiment is not very risky since there are no sensitive information we use in this experiment. Although users have to provide their credit card numbers when they enroll the course, these information are not part of the experiment.
+
+> Thus, 22 days are enough to gather required data and the duration is reasonable, so we will run the experiment for 22 days.
 
 
-Give your reasoning for the fraction you chose to divert. How risky do you think this experiment would be for Udacity?
+### Experiment Analysis
+
+#### Sanity Checks
+
+*For each of your invariant metrics, give the 95% confidence interval for the value you expect to observe, the actual observed value, and whether the metric passes your sanity check.*
+
+<table style="width:119%;">
+<colgroup>
+<col width="12%" />
+<col width="23%" />
+<col width="23%" />
+<col width="23%" />
+<col width="23%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Metric</th>
+<th align="center">Expected Value</th>
+<th align="center">Observed Value</th>
+<th align="center">CI Lower Bound</th>
+<th align="center">CI Upper Bound</th>
+<th align="center">Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Number of Cookies</td>
+<td align="center">0.5000</td>
+<td align="center">0.5006</td>
+<td align="center">0.4988</td>
+<td align="center">0.5012</td>
+<td align="center">Pass</td>
+</tr>
+<tr class="even">
+<td align="center">Number of clicks on &quot;start free trial&quot;</td>
+<td align="center">0.5000</td>
+<td align="center">0.5005</td>
+<td align="center">0.4959</td>
+<td align="center">0.5042</td>
+<td align="center">Pass</td>
+</tr>
+</tbody>
+</table>
 
 
-Experiment Analysis
-Sanity Checks
-For each of your invariant metrics, give the 95% confidence interval for the value you expect to observe, the actual observed value, and whether the metric passes your sanity check. (These should be the answers from the "Sanity Checks" quiz.)
+*For any sanity check that did not pass, explain your best guess as to what went wrong based on the day-by-day data. Do not proceed to the rest of the analysis unless all sanity checks pass.*
+
+> All sanity checks passed.
 
 
-For any sanity check that did not pass, explain your best guess as to what went wrong based on the day-by-day data. Do not proceed to the rest of the analysis unless all sanity checks pass.
+### Result Analysis
 
+#### Effect Size Tests
 
-Result Analysis
-Effect Size Tests
-For each of your evaluation metrics, give a 95% confidence interval around the difference between the experiment and control groups. Indicate whether each metric is statistically and practically significant. (These should be the answers from the "Effect Size Tests" quiz.)
+*For each of your evaluation metrics, give a 95% confidence interval around the difference between the experiment and control groups. Indicate whether each metric is statistically and practically significant*
 
 
 Sign Tests
