@@ -931,11 +931,7 @@ def calculate_percentages_and_counts(field):
 
 def x_indices(size):
     
-    indices = []
-    for i in range(0, size):
-        indices.append( i + 0.4 )
-    
-    return indices
+    return np.arange(size) + 0.4
         
     
 
@@ -1021,13 +1017,14 @@ survived_data.groupby(['Pclass', 'Survived']).count()
 
 
 ```python
-survived_data.groupby(['Pclass'])['Survived'].count().plot(kind = 'bar')
+count_plot = survived_data.groupby(['Pclass'])['Survived'].count().plot(kind = 'bar', title = 'Passengers by Pclass')
+count_plot.set_ylabel('count')
 ```
 
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0xf0cc400>
+    <matplotlib.text.Text at 0xbd10eb8>
 
 
 
@@ -1330,13 +1327,14 @@ survived_data.groupby(['Age Bin', 'Survived']).count()
 
 
 ```python
-survived_data.groupby(['Age Bin'])['Survived'].count().plot(kind = 'bar')
+count_plot = survived_data.groupby(['Age Bin'])['Survived'].count().plot(kind = 'bar', title = 'Number of passengers by age bin')
+count_plot.set_ylabel('count')
 ```
 
 
 
 
-    <matplotlib.axes._subplots.AxesSubplot at 0xbfd6ba8>
+    <matplotlib.text.Text at 0xd206588>
 
 
 
@@ -1415,9 +1413,75 @@ print "P Value :\t", chi_result[1]
 >Since P value is far less than 0.05 and looking at the chi-table we can figure out that the chi-value lies in the significant region. So We reject the null hypothesis.
 Thus, age of a person does effect the survival rate of a person. We can see from the graph that children had better chances of survival than any other group.
 
+### Additional Analysis : Fare for a person by his age
+
+##### Visualization : Median Fare vs Age Bin
+
+
+```python
+def create_new_age_bin(age):
+    x_labels = ['0-9', '10-19', '20-29', '30-39', '40-49', '50-59', '60-69', '70-79', '80-89']
+    
+    if not np.isnan(age):
+        return x_labels[int(age/10)]
+    
+titanic_data['new_age_bin'] = titanic_data['Age'].apply(create_new_age_bin)
+ages_and_fares_plot = titanic_data[ ['new_age_bin', 'Fare'] ].boxplot(by = "new_age_bin")
+ages_and_fares_plot.set_ylim([0, 80])
+ages_and_fares_plot.set_xlabel('Age Bin')
+ages_and_fares_plot.set_ylabel('Fares in USD')
+```
+
+
+
+![png](img/output_82_1.png)
+
+
+> No specific trend can be observed, probably different classes of the passenger is the reason why we don't see a specific pattern. Let us draw some more visualizations.
+
+##### Median Fare by Pclass
+
+
+```python
+ages_and_fares_plot = titanic_data[ ['Pclass', 'Fare'] ].boxplot(by = "Pclass")
+ages_and_fares_plot.set_ylabel('Median Fare for the group')
+ages_and_fares_plot.set_ylim([0, 100])
+ages_and_fares_plot.set_xlabel('Pclass')
+```
+
+
+
+
+
+![png](img/output_85_1.png)
+
+
+> Clearly upper class fares are higher than the lower ones.
+
+##### Median Fare by age and class of the person
+
+
+```python
+
+fares_plot = titanic_data.groupby(['Pclass', 'new_age_bin'])['Fare'].median().plot(kind = 'bar', title = 'Fare by passenger class and age group')
+fares_plot.set_ylabel('Median Fare for the group')
+```
+
+
+
+
+
+
+
+
+![png](img/output_88_1.png)
+
+
+> Quite surprisingly, fares for children are higher in each class. Probably they require extra care and must have been provided with some better facilities. But, the actual reason for this trend is not known.
+
 ### Final Conclusion
 
->The results of the analysis, although tentative, would appear to indicate that class and sex, namely, being a female with upper social-economic standing (first class), would give one the best chance of survival when the tragedy occurred on the Titanic. Age did not seem to be a major factor although children had better chances of survival. While being a man in third class, gave one the lowest chance of survival.
+>The results of the analysis, although tentative, would appear to indicate that class and sex, namely, being a female with upper social-economic standing (first class), would give one the best chance of survival when the tragedy occurred on the Titanic. Age did not seem to be a major factor although children had better chances of survival. While being a man in third class, gave one the lowest chance of survival.Quite surprisingly, we found out that fares for children were higher that others in each class.
 
 >#### Issues :
 * A portion of men and women did not have Age data and were removed from calculations which could have skewed some numbers.
