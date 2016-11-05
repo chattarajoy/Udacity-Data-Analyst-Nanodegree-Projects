@@ -1,0 +1,4 @@
+References were taken from:
+
+1.Wikipedia
+2.Udacity A/B Testing course
