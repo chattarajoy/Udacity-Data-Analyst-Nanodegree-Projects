@@ -563,39 +563,24 @@ check_sex = 0
 check_pclass = 0
 check_embarked = 0
 
-for index, row in titanic_data.iterrows():
-    if row['Survived'] not in [0, 1]:
-        check_survival += 1
-    if row['Sex'] not in ['male', 'female']:
-        check_sex += 1
-    if row['Pclass'] not in [1, 2, 3]:
-        check_plcass += 1
-    if row['Embarked'] not in ['C','Q','S']:
-        check_embarked += 1
-        print "Inconsistency in Embarked column : ", row['Embarked']
-    
-        
-print "\nInconsistent data count :\n"
-print "Survived Column : ", check_survival
-print "Sex Column : ",      check_sex
-print "Pclass Column : ",   check_pclass
-print "Embarked Column : ", check_embarked
-    
-    
+
+print titanic_data['Survived'].unique()
+print titanic_data['Sex'].unique()
+print titanic_data['Pclass'].unique()
+print titanic_data['Embarked'].unique()  
 ```
 
-    Inconsistency in Embarked column :  nan
-    Inconsistency in Embarked column :  nan
-    
-    Inconsistent data count :
-    
-    Survived Column :  0
-    Sex Column :  0
-    Pclass Column :  0
-    Embarked Column :  2
+    [0 1]
+    ['male' 'female']
+    [3 1 2]
+    ['S' 'C' 'Q' nan]
     
 
-> We knew that the Embarked column has 2 nan values, all others are as expected.
+>###### Result
+>* Sex Field contains only male and female values
+>* Survived field has only 0 and 1, no other values
+>* Pclass has 3, 2, 1 as it values no other classes 
+>* We knew that the Embarked column has 2 nan values, all others are as expected.
 
 ### 4.3 Removing unwanted fields
 
@@ -1032,6 +1017,24 @@ survived_data.groupby(['Pclass', 'Survived']).count()
 
 
 
+##### Distribution by each class
+
+
+```python
+survived_data.groupby(['Pclass'])['Survived'].count().plot(kind = 'bar')
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0xf0cc400>
+
+
+
+
+![png](img/output_44_1.png)
+
+
 ##### Proportion of persons who survived in each class
 
 
@@ -1073,7 +1076,7 @@ plt.show()
 ```
 
 
-![png](img/output_46_0.png)
+![png](img/output_48_0.png)
 
 
 > The Visuals clearly point out that as we move towards the upper classes, chances of survival increases. To check if our intution is correct, we can perform a chi-squared test to see if the results are statistically significatnt.
@@ -1197,7 +1200,7 @@ plt.show()
 ```
 
 
-![png](img/output_57_0.png)
+![png](img/output_59_0.png)
 
 
 > Thus, we observe a difference of more than 50% for survival rate between the two genders.To check if the result is significant we can carry out chi-squared test to calculate the p-value for the data as it is a categorical data.
@@ -1223,6 +1226,35 @@ print "P Value :\t", chi_result[1]
 #### Conclusion
 > Since P value < 0.05 and looking at the chi-table we can figure out that the chi-value lies in the significant region. So We reject the null hypothesis.<br/>
 Thus, we can conclude that Women had a better chance of survival, maybe due to the fact that during evacuations women and children are given preference over men.
+
+### Visualization : Survival by 'Sex' and 'Age Bin' both
+
+
+```python
+male_data_by_agebin = titanic_data[ titanic_data.Sex == 'male'].groupby('Age Bin')['Survived'].mean()*100
+female_data_by_agebin = titanic_data[ titanic_data.Sex == 'female'].groupby('Age Bin')['Survived'].mean()*100
+
+age_bins = ['Children', 'Young Aged', 'Middle Aged', 'Old Aged']
+
+plt1 = plt.subplot()
+male_index = np.array(range(len(age_bins)))
+female_index = np.array(range(len(age_bins)))+0.4
+p1 = plt1.bar(male_index, male_data_by_agebin, width=0.4, color='b', alpha = 0.6)
+p2 = plt1.bar(female_index, female_data_by_agebin, width=0.4, color='r', alpha = 0.6)
+plt.xticks( np.array(range( len(age_bins))) + 0.4,  age_bins)
+plt1.set_ylabel("Percentage")
+plt1.set_xlabel("Age Bin")
+plt1.set_title("Percentage of survivors by agebin and gender")
+plt1.legend((p1[0], p2[0]), ('Male', 'Female'), loc='upper left')
+plt.show()
+```
+
+
+![png](img/output_65_0.png)
+
+
+##### Conclusion
+> We also observe that females have a higher chances of survival over each age group and the difference is quite significant.
 
 ### Q3. Which age group survived the most?
 
@@ -1294,6 +1326,24 @@ survived_data.groupby(['Age Bin', 'Survived']).count()
 
 
 
+##### Distribution of passengers by age bin
+
+
+```python
+survived_data.groupby(['Age Bin'])['Survived'].count().plot(kind = 'bar')
+```
+
+
+
+
+    <matplotlib.axes._subplots.AxesSubplot at 0xbfd6ba8>
+
+
+
+
+![png](img/output_71_1.png)
+
+
 ##### Proportion of people who survived
 
 
@@ -1336,7 +1386,7 @@ plt.show()
 ```
 
 
-![png](img/output_68_0.png)
+![png](img/output_75_0.png)
 
 
 >Children (age group 0-18) seem to have a higher survival rate than the other groups. To check if the difference is statistically significant, we can carry out a ch-squared test.
@@ -1372,4 +1422,5 @@ Thus, age of a person does effect the survival rate of a person. We can see from
 >#### Issues :
 * A portion of men and women did not have Age data and were removed from calculations which could have skewed some numbers.
 * The category of 'children' was assumed to be anyone under the age of 18, using today's North American standard for adulthood which was certainly not the case in the 1900s.
-
+* Survivor Bias : The data was collected after the titanic sank, since we have the survivors available, it was easier to get more and much accurate information about the survivors rather than those who died.
+* The dataset used is just a part (sample) of the actual data. The actual data might show a bit variation from the one we are using.
