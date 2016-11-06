@@ -18,3 +18,14 @@
 @keyframes blinker {  
   50% { opacity: 0; }
 }
+
+
+#info {
+
+	color: #800000;
+}
+
+.circle {
+
+	opacity: 0.6;
+}
