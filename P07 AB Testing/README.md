@@ -10,7 +10,7 @@
 
 ![jpg](img/screenshot.jpg)
 
->The hypothesis was that this might set clearer expectations for students upfront, thus reducing the number of frustrated students who left the free trial because they didn't have enough time—without significantly reducing the number of students to continue past the free trial and eventually complete the course. If this hypothesis held true, Udacity could improve the overall student experience and improve coaches' capacity to support students who are likely to complete the course.
+>The hypothesis was that this might set clearer expectations for students upfront, thus reducing the number of frustrated students who left the free trial because they didn't have enough time without significantly reducing the number of students to continue past the free trial and eventually complete the course. If this hypothesis held true, Udacity could improve the overall student experience and improve coaches' capacity to support students who are likely to complete the course.
 
 >The unit of diversion is a cookie, although if the student enrolls in the free trial, they are tracked by user-id from that point forward. The same user-id cannot enroll in the free trial twice. For users that do not enroll, their user-id is not tracked in the experiment, even if they were signed in when they visited the course overview page.
 
@@ -70,7 +70,12 @@
 
 *Indicate whether you will use the Bonferroni correction during your analysis phase, and give the number of pageviews you will need to power you experiment appropriately.*
 
-> No, Since the metric being used are not independent of each other it would be better not to use Bonferroni correction.
+>No, I will not use bonferroni correction. 
+
+>Bonferroni correction is designed to reduce type 1 errors ( wherin one rejects the null when it is true) in those cases where we need *any* of our metrics to match the expectation not *all*.
+
+>In our case it was just the opposite. We need *all* our metrics to meet our expectations or else the results aren't useful. So, it is better not to use Bonferroni correction as it would increase the chances of type 2 error (fail to reject the null when it is false.)
+
 
 ***Pageviews for Each Evaluation Metric to Achieve Target Statistical
 Power***
@@ -249,7 +254,11 @@ is 6,85,325*
 
 *State whether you used the Bonferroni correction, and explain why or why not. If there are any discrepancies between the effect size hypothesis tests and the sign tests, describe the discrepancy and why you think it arose.*
 
->I didn’t use Bonferroni correction because the metrics are not independent; thus, Bonferroni correction is too conservative for the test. Bonferroni correction could have been used if all the metrics were independent to reduce the value of aplha and thus reduce the chances of getting false positives (rejecting the null when the null is true).
+>I didn't use Bonferroni correction because the metrics are not independent. 
+
+>Bonferroni correction is designed to reduce type 1 errors ( wherin one rejects the null when it is true) in those cases where we need *any* of our metrics to match the expectation not *all*.
+
+>In our case it was just the opposite. We need *all* our metrics to meet our expectations or else the results aren't useful. So, it is better not to use Bonferroni correction as it would increase the chances of type 2 error (fail to reject the null when it is false.)
 
 >Both effect size tests and sign tests result in having statistical significance in Gross Conversion but no statistical significance in Net Conversion. This means that although the experiment affects the users' decision to enroll the online courses but it didn't affect much to the enrolled users to pay the courses.
 
@@ -267,7 +276,7 @@ is 6,85,325*
 
 *Give a high-level description of the follow up experiment you would run, what your hypothesis would be, what metrics you would want to measure, what your unit of diversion would be, and your reasoning for these choices.*
 
->A follow-up experiment could be based upon motivation with only a slight change from the previous experiment. It would require a method to approximate the number of hours that each student dedicated to the material in the first week. If a student committed less than the recommended number of hours, a message would pop-up upon login before the start of the second week to motivate the student to commit more time by showing success stories of students who have already completed the nanodegree.Those that met the recommended number of hours wouldn’t get a direct message but could still access this repository of interviews from their course homepage under the ’Resources’ tab.
+>A follow-up experiment could be based upon motivation with only a slight change from the previous experiment. It would require a method to approximate the number of hours that each student dedicated to the material in the first week. If a student committed less than the recommended number of hours, a message would pop-up upon login before the start of the second week to motivate the student to commit more time by showing success stories of students who have already completed the nanodegree.Those that met the recommended number of hours wouldn't get a direct message but could still access this repository of interviews from their course homepage under the 'Resources' tab.
 
-> My hypothes is is that the message would motivate some students who might otherwise drop out during the 14-day trial to continue past and possibly complete the course. It would also not affect those people that would otherwise continue through the trial and complete the course had there been no pop-upmessage. In this case,the overall student experience in the forums could be more energized and improve beyond the ﬁrst week,and coaching resources would be used on more enthusiastic and dedicated students.
-Considering this design, retention rate would be the best way to test our hypothesis. Being that we would divert trafﬁc evenly among the control and experimental groups, the most suitable invariant metric would be the number of user-id's to complete checkout and enroll in the course. It would be practical at this point, to divert students into the control or experiment group. It’s worth noting that this experiment would likely take longer to conduct.
+> My hypothesis is is that the message would motivate some students who might otherwise drop out during the 14-day trial to continue past and possibly complete the course. It would also not affect those people that would otherwise continue through the trial and complete the course had there been no pop-upmessage. In this case,the overall student experience in the forums could be more energized and improve beyond the first week,and coaching resources would be used on more enthusiastic and dedicated students.
+Considering this design, retention rate would be the best way to test our hypothesis*(Evaluation metric is Retention Rate)*. Being that we would divert traffic evenly among the control and experimental groups, the most suitable *invariant metric* would be the number of user-id's to complete checkout and enroll in the course. It would be practical at this point, to divert students into the control or experiment group *(Unit of Diversion is user-id)*. It's worth noting that this experiment would likely take longer to conduct.
