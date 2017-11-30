@@ -2,11 +2,11 @@
 
 > by Joy Lal Chattaraj
 
-***View the visualization <a href = "http://airlinesdimpleviz.bitballoon.com/"> here </a>***
+***View the visualization <a href = "http://airlinesdimpleviz.bitballoon.com/" target="_blank"> here </a>***
 
 ## Description
 
-> The data shows how airlines have performed the years 2003-2016. It shows the percentage of top 5 carrier's flights that were on time (within 15 minutes of sheduled time) for each year. Source of data : <a href = "http://www.transtats.bts.gov/OT_Delay/OT_DelayCause1.asp?pn=1">RITA</a>
+> The data shows how airlines have performed the years 2003-2016. It shows the percentage of top 5 carrier's flights that were on time (within 15 minutes of sheduled time) for each year. Source of data : <a href = "http://www.transtats.bts.gov/OT_Delay/OT_DelayCause1.asp?pn=1" target="_blank">RITA</a>
 
 ***Outcomes***
 <ul>
@@ -72,8 +72,8 @@
 
 ### References
 
-* 1. Udacity data visualization course
-* 2. stackoverflow.com
-* 3. RITA - The source of data
-* 4. d3 and dimple.js documentation
-* 5. <a href = "http://dimplejs.org/advanced_examples_viewer.html?id=advanced_interactive_legends">Building interactive legends</a>
+1. Udacity data visualization course
+2. stackoverflow.com
+3. RITA - The source of data
+4. d3 and dimple.js documentation
+5. <a href = "http://dimplejs.org/advanced_examples_viewer.html?id=advanced_interactive_legends" target="_blank">Building interactive legends</a>
