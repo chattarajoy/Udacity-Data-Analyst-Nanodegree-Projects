@@ -2,7 +2,7 @@
 
 > by Joy Lal Chattaraj
 
-***View the visualization <a href = "http://airlinesdimpleviz.bitballoon.com/" target="_blank"> here </a>***
+***View the visualization <a href = "https://d3airlines.netlify.com/" target="_blank"> here </a>***
 
 ## Description
 
